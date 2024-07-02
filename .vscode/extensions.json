@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "xabikos.javascriptsnippets",
+    "xabikos.reactsnippets",
+    "cmstead.js-codeformer",
+    "cmstead.jsrefactor"
+  ]
+}
