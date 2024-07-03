@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../redux/store';
 import { setError, signUp } from '../../redux/reducers/authSlice';
 import { SignUpForm } from './SignUpForm';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { SignUpErrorResponseType } from '../../api/authApi.types';
 
 export type Inputs = {
   name: string;
@@ -14,29 +14,21 @@ export type Inputs = {
   confirmPassword: string;
 };
 
-export type ErrorType = {
-	data: {
-		error: string
-	}
-	status: number
-}
-
 export const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [signUpRequest, { isLoading, isError, isSuccess, data, error }] =
     useSignUpRequestMutation();
 
-  useEffect(() => {
-    if (isError) {
-			const errorData = error as ErrorType;
-      dispatch(setError(errorData.data.error));
-    }
+  if (isError) {
+    const errorData = error as SignUpErrorResponseType;
+    dispatch(setError(errorData.data.error));
+  }
 
-    if (isSuccess) {
-      dispatch(signUp());
-    }
-  }, []);
+  if (isSuccess) {
+    dispatch(signUp());
+    navigate('/');
+  }
 
   const {
     handleSubmit,
@@ -46,8 +38,6 @@ export const SignUp = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    // данные, необходимые для регистрации
-    console.log(formData);
     // функция запроса на регистрацию
     signUpRequest({
       // подставлены хардкодом левые данные из API, так как не смог
@@ -72,6 +62,7 @@ export const SignUp = () => {
           onSubmit={onSubmit}
           register={register}
           watch={watch}
+          isLoading={isLoading}
         />
       </Paper>
     </div>

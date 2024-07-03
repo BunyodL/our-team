@@ -12,9 +12,10 @@ type Props = {
   watch: UseFormWatch<Inputs>;
   handleSubmit: UseFormHandleSubmit<Inputs>;
   onSubmit: (formData: Inputs) => void;
+  isLoading: boolean;
 };
 
-export function SignUpForm({ register, errors, watch, handleSubmit, onSubmit }: Props) {
+export function SignUpForm({ register, errors, watch, handleSubmit, onSubmit, isLoading }: Props) {
   return (
     <form>
       <div className="flex flex-col gap-4">
@@ -50,10 +51,10 @@ export function SignUpForm({ register, errors, watch, handleSubmit, onSubmit }: 
       </div>
 
       <Button
-        className="mb-4 mt-4 h-12 w-full rounded-[8px] border-0 bg-[#512689] text-white text-[16px] tracking-wide cursor-pointer active:scale-95"
+        className="mb-4 mt-4 h-12 w-full border-0 active:scale-95"
         onClick={handleSubmit(onSubmit)}
       >
-        Зарегистрироваться
+        {isLoading ? 'Загрузка' : 'Зарегистрироваться'}
       </Button>
     </form>
   );

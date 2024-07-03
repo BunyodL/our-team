@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { UserType, UsersApi } from './usersApi.types';
+import { SingleUserType, UserType, UsersApi } from './usersApi.types';
 
 export const usersApiSlice = createApi({
   reducerPath: 'usersApiSlice',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://dummyjson.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://reqres.in/api/' }),
   endpoints: (builder) => ({
     fetchUsers: builder.query<UsersApi, number>({
-      query: (page) => `users?skip=${(page - 1) * 8}&limit=8`,
+      query: (page) => `users?per_page=8&page=${page}`,
     }),
-    fetchUserById: builder.query<UserType, string>({
+    fetchUserById: builder.query<SingleUserType, string>({
       query: (userId) => `users/${userId}`,
     }),
   }),

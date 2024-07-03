@@ -1,4 +1,4 @@
-import { FetchBaseQueryError, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SignUpResponseType } from './authApi.types';
 
 type QueryBody = { email: string; password: string };
@@ -17,7 +17,6 @@ export const authApiSlice = createApi({
         localStorage.setItem('token', response.token);
         return response;
       },
-      transformErrorResponse: (response: FetchBaseQueryError) => response,
     }),
   }),
 });

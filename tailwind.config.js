@@ -9,7 +9,12 @@ export default {
 		preflight: false,
 	},
 	theme: {
-		extend: {},
+		colors: {
+			"white": "#F8F8F8",
+			"black": "#151317",
+			"violet": "#512689",
+			"red": "#d32f2f",
+		},
 	},
 	plugins: [],
 };

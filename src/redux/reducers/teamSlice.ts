@@ -5,11 +5,13 @@ import { UserType } from '../../api/usersApi.types';
 export interface TeamState {
   users: Array<UserType>;
   totalUsersCount: number;
+  totalPages: number;
 }
 
 const initialState: TeamState = {
   users: [],
   totalUsersCount: 0,
+  totalPages: 0,
 };
 
 const teamSlice = createSlice({
@@ -17,14 +19,19 @@ const teamSlice = createSlice({
   initialState,
   reducers: {
     setUsers: (state, action: PayloadAction<Array<UserType>>) => {
-      state.users = action.payload;
+      if (!state.users.includes(action.payload[0])) {
+        state.users = action.payload;
+      }
     },
     setTotalUsersCount: (state, action: PayloadAction<number>) => {
       state.totalUsersCount = action.payload;
     },
+    setTotalPages: (state, action: PayloadAction<number>) => {
+      state.totalPages = action.payload;
+    },
   },
 });
 
-export const { setUsers, setTotalUsersCount } = teamSlice.actions;
+export const { setUsers, setTotalUsersCount, setTotalPages } = teamSlice.actions;
 
 export default teamSlice.reducer;
