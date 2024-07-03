@@ -1,4 +1,6 @@
-export type Type = {
+export type SignUpQueryBody = { email: string; password: string };
+
+export type SignUpResponseType = {
   id: number;
   token: string;
 };

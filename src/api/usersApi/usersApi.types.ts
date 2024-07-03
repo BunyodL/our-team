@@ -24,4 +24,3 @@ export interface UserType {
 export interface SingleUserType extends SupportType {
 	data: UserType
 }
-

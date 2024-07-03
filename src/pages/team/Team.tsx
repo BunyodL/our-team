@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { Container } from '../../components/util-components/Container';
-import { Header } from '../../components/header/Header';
-import { useFetchUsersQuery } from '../../api/usersApiSlice';
+import { useFetchUsersQuery } from '../../api/usersApi/usersApiSlice';
 import { setTotalPages, setTotalUsersCount, setUsers } from '../../redux/reducers/teamSlice';
 import { User } from './User';
 import { signOut } from '../../redux/reducers/authSlice';
 import { setFollowedUsers } from '../../redux/reducers/userSlice';
-import { HeaderButton } from '../../components/header/HeaderButton';
-import { Button } from '../../components/util-components/Button';
-import chevronDown from '../../assets/chevronDown.svg';
-import { SignUpErrorResponseType } from '../../api/authApi.types';
+import { Paginator } from '../../components/util-components/Paginator';
+import { Header, HeaderButton } from '../../components/header';
+import { SignUpErrorResponseType } from '../../api/authApi';
 
 export const Team = () => {
   const dispatch = useAppDispatch();
@@ -66,20 +64,14 @@ export const Team = () => {
             />
           ))}
         </div>
-        {page !== totalPages && (
-          <div className="w-full flex justify-center">
-            <Button
-              className="bg-[#fff] pt-2 pb-2 pl-4 pr-4 border-black flex gap-2 items-center"
-              onClick={() => setPage((v) => v + 1)}
-            >
-              <span className=" text-black">{'Показать еще'}</span>
-              <img
-                src={chevronDown}
-                alt=""
-              />
-            </Button>
-          </div>
-        )}
+
+        <div className="w-full flex gap-6 justify-center">
+          <Paginator
+            page={page}
+            setPage={setPage}
+            totalPages={totalPages}
+          />
+        </div>
       </Container>
     </>
   );

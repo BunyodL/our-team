@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { UserType } from '../../api/usersApi.types';
+import { UserType } from '../../api/usersApi';
 
 export interface UserState {
   user: UserType | null;
@@ -31,7 +31,7 @@ const userSlice = createSlice({
       localStorage.setItem('followedUsers', JSON.stringify(state.followedUsers));
     },
     setFollowedUsers: (state, action: PayloadAction<number[]>) => {
-      state.followedUsers = action.payload;		
+      state.followedUsers = action.payload;
     },
   },
 });

@@ -1,10 +1,7 @@
-import { NameFormInput } from '../../components/inputs/NameFormInput';
-import { EmailFormInput } from '../../components/inputs/EmailFormInput';
-import { PasswordFormInput } from '../../components/inputs/PasswordFormInput';
-import { ConfirmPasswordFormInput } from '../../components/inputs/ConfirmPasswordFormInput';
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister, UseFormWatch } from 'react-hook-form';
 import { Inputs } from './SignUp';
 import { Button } from '../../components/util-components/Button';
+import { ConfirmPasswordFormInput, EmailFormInput, NameFormInput, PasswordFormInput } from '../../components/inputs';
 
 type Props = {
   register: UseFormRegister<Inputs>;
@@ -54,7 +51,7 @@ export function SignUpForm({ register, errors, watch, handleSubmit, onSubmit, is
         className="mb-4 mt-4 h-12 w-full border-0 active:scale-95"
         onClick={handleSubmit(onSubmit)}
       >
-        {isLoading ? 'Загрузка' : 'Зарегистрироваться'}
+        {isLoading ? 'Загрузка...' : 'Зарегистрироваться'}
       </Button>
     </form>
   );

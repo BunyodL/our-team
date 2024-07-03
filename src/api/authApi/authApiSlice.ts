@@ -1,13 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { SignUpResponseType } from './authApi.types';
-
-type QueryBody = { email: string; password: string };
+import { SignUpQueryBody, SignUpResponseType } from './authApi.types';
 
 export const authApiSlice = createApi({
   reducerPath: 'authApiSlice',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://reqres.in/api/' }),
   endpoints: (builder) => ({
-    signUpRequest: builder.mutation<SignUpResponseType, QueryBody>({
+    signUpRequest: builder.mutation<SignUpResponseType, SignUpQueryBody>({
       query: (authData) => ({
         url: 'register',
         method: 'POST',

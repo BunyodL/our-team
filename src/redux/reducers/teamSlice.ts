@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { UserType } from '../../api/usersApi.types';
+import { UserType } from '../../api/usersApi';
 
 export interface TeamState {
   users: Array<UserType>;

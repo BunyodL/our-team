@@ -1,11 +1,12 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Paper } from '@mui/material';
-import { useSignUpRequestMutation } from '../../api/authApiSlice';
+import { useSignUpRequestMutation } from '../../api/authApi/authApiSlice';
 import { useAppDispatch } from '../../redux/store';
 import { setError, signUp } from '../../redux/reducers/authSlice';
 import { SignUpForm } from './SignUpForm';
 import { useNavigate } from 'react-router-dom';
-import { SignUpErrorResponseType } from '../../api/authApi.types';
+import { SignUpErrorResponseType } from '../../api/authApi';
+
 
 export type Inputs = {
   name: string;

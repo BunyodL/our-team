@@ -1,13 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { Header } from '../../components/header/Header';
-import { useFetchUserByIdQuery } from '../../api/usersApiSlice';
+import { useFetchUserByIdQuery } from '../../api/usersApi/usersApiSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { setUser } from '../../redux/reducers/userSlice';
 import { signOut } from '../../redux/reducers/authSlice';
-import { HeaderButton } from '../../components/header/HeaderButton';
-import phone from '../../assets/phone.svg';
-import mail from '../../assets/mail.svg';
 import { Button } from '../../components/util-components/Button';
+import { Header, HeaderButton } from '../../components/header';
+import { mail, phone } from '../../assets';
 
 // не смог найти api, где у пользователей есть описание
 // поэтому взял из задания

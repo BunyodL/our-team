@@ -1,4 +1,4 @@
-import { UserType } from '../../api/usersApi.types';
+import { UserType } from '../../api/usersApi';
 import { Paper } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { UserCheckBox } from './UserCheckBox';
@@ -23,7 +23,7 @@ export const User = ({ user }: Props) => {
               <img
                 src={user.avatar}
                 alt={user.first_name}
-                className="border rounded-full overflow-hidden"
+                className="border rounded-full overflow-hidden w-[124px] h-[124px] object-cover"
               />
             </div>
 
