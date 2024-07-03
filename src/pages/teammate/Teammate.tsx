@@ -5,7 +5,7 @@ import { setUser } from '../../redux/reducers/userSlice';
 import { signOut } from '../../redux/reducers/authSlice';
 import { Button } from '../../components/util-components/Button';
 import { Header, HeaderButton } from '../../components/header';
-import { mail, phone } from '../../assets';
+import { mail, phone, loader } from '../../assets';
 
 // не смог найти api, где у пользователей есть описание
 // поэтому взял из задания
@@ -23,7 +23,7 @@ export function Teammate() {
     return <h2>Запрашиваемый пользователь не найден</h2>;
   }
 
-  const { data, isError, isLoading, isSuccess, error } = useFetchUserByIdQuery(teammateId!);
+  const { data, isLoading, isSuccess } = useFetchUserByIdQuery(teammateId!);
 
   if (isSuccess) {
     dispatch(setUser(data.data));
@@ -49,7 +49,7 @@ export function Teammate() {
         <div className="flex gap-3 items-center absolute top-[39px] left-[188px]">
           <div className="w-[187px] h-[187px]">
             <img
-              src={user?.avatar}
+              src={isLoading ? loader : user?.avatar}
               alt={user?.first_name}
               className="border rounded-full overflow-hidden w-[187px] h-[187px]"
             />

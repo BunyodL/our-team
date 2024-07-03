@@ -9,6 +9,7 @@ import { setFollowedUsers } from '../../redux/reducers/userSlice';
 import { Paginator } from '../../components/util-components/Paginator';
 import { Header, HeaderButton } from '../../components/header';
 import { SignUpErrorResponseType } from '../../api/authApi';
+import { loader } from '../../assets';
 
 export const Team = () => {
   const dispatch = useAppDispatch();
@@ -57,6 +58,12 @@ export const Team = () => {
       <Container className="pt-12 pb-12">
         <div className="grid grid-cols-4 gap-5 pb-12">
           {isError && <h2>{errorData.data.error}</h2>}
+          {isLoading && (
+            <img
+              src={loader}
+              alt=""
+            />
+          )}
           {users.map((u) => (
             <User
               user={u}
