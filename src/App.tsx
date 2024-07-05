@@ -1,44 +1,40 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Team } from './pages/team/Team';
-import { Teammate } from './pages/teammate/Teammate';
-import { SignUp } from './pages/auth/SignUp';
-import { useAppDispatch, useAppSelector } from './redux/store';
+import { TeamPage } from './pages/team/TeamPage';
+import { User } from './pages/user/User';
+import { useAppSelector } from './redux/store';
 import { useEffect } from 'react';
-import { signUp } from './redux/reducers/authSlice';
+import { AllRoutes } from './@types/routes';
+import { useRestoreToken } from './hooks';
+import { SignUpContainer } from './pages/auth/SignUpContainer';
 
 export function App() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { isAuth } = useAppSelector((s) => s.auth);
 
+  const restoreToken = useRestoreToken();
+
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      return navigate('signup');
-    }
-    if (localStorage.getItem('token')) {
-      dispatch(signUp());
-    }
-  }, [isAuth, dispatch]);
+    restoreToken();
+  }, [isAuth, restoreToken]);
 
   return (
     <>
       <Routes>
         <Route
-          path={'/'}
-          element={<Team />}
+          path={AllRoutes.home}
+          element={<TeamPage />}
         />
         <Route
-          path={'/team'}
-          element={<Team />}
+          path={AllRoutes.team}
+          element={<TeamPage />}
         />
         <Route
-          path="/signup"
-          element={<SignUp />}
+          path={AllRoutes.singUp}
+          element={<SignUpContainer />}
         />
         <Route
-          path="/team/:teammateId"
-          element={<Teammate />}
+          path={AllRoutes.team + '/:teammateId'}
+          element={<User />}
         />
       </Routes>
     </>

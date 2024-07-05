@@ -1,55 +1,14 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
+import React from 'react';
 import { Paper } from '@mui/material';
-import { useSignUpRequestMutation } from '../../api/authApi/authApiSlice';
-import { useAppDispatch } from '../../redux/store';
-import { setError, signUp } from '../../redux/reducers/authSlice';
 import { SignUpForm } from './SignUpForm';
-import { useNavigate } from 'react-router-dom';
-import { SignUpErrorResponseType } from '../../api/authApi';
+import { SignUpQueryBody } from '../../api/authApi';
 
-
-export type Inputs = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+type Props = {
+  isLoading: boolean;
+  signUpRequest: (authData: SignUpQueryBody) => void;
 };
 
-export const SignUp = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const [signUpRequest, { isLoading, isError, isSuccess, data, error }] =
-    useSignUpRequestMutation();
-
-  if (isError) {
-    const errorData = error as SignUpErrorResponseType;
-    dispatch(setError(errorData.data.error));
-  }
-
-  if (isSuccess) {
-    dispatch(signUp());
-    navigate('/');
-  }
-
-  const {
-    handleSubmit,
-    watch,
-    register,
-    formState: { errors },
-  } = useForm<Inputs>();
-
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    // функция запроса на регистрацию
-    signUpRequest({
-      // подставлены хардкодом левые данные из API, так как не смог
-      // найти Fake API, где можно сделать запрос на регистрацию
-      // во всех таких API запрос на регистрацию доступен только
-      // имеющимся пользователям в каждом конкретном API
-      email: 'eve.holt@reqres.in',
-      password: 'pistol',
-    });
-  };
-
+export const SignUp = React.memo(({ isLoading, signUpRequest }: Props) => {
   return (
     <div className="flex justify-center items-center h-[100vh]">
       <Paper
@@ -58,14 +17,10 @@ export const SignUp = () => {
       >
         <h2 className="text-[20px] leading-6 pt-4 pb-4">Регистрация</h2>
         <SignUpForm
-          errors={errors}
-          handleSubmit={handleSubmit}
-          onSubmit={onSubmit}
-          register={register}
-          watch={watch}
+          signUpRequest={signUpRequest}
           isLoading={isLoading}
         />
       </Paper>
     </div>
   );
-};
+});

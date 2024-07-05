@@ -1,20 +1,16 @@
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import {
+	FormControl,
+	IconButton,
+	InputAdornment,
+	InputLabel,
+	OutlinedInput
+} from '@mui/material';
 import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
-import { InputHTMLAttributes, useState } from 'react';
-import { FieldErrors, UseFormRegister, ValidationRule } from 'react-hook-form';
+import React, { useState } from 'react';
 import { InputErrorMessage } from './InputErrorMessage';
-import { Inputs } from '../../pages/auth/SignUp';
+import { InputType } from '../../@types/inputs';
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
-  id: 'name' | 'email' | 'password' | 'confirmPassword';
-  label: string;
-  placeholder: string;
-  register: UseFormRegister<Inputs>;
-  errors: FieldErrors<Inputs>;
-  className?: string;
-};
-
-export const PasswordFormInput = ({
+export const PasswordFormInput = React.memo(({
   id,
   label,
   placeholder,
@@ -22,7 +18,7 @@ export const PasswordFormInput = ({
   errors,
   className,
   ...props
-}: Props) => {
+}: InputType) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -46,7 +42,6 @@ export const PasswordFormInput = ({
           <OutlinedInput
             {...register(id, {
               required: 'Ошибка',
-              // minLength: 4,
               validate: (val: string) => {
                 if (val.length < 4) {
                   return 'Пароль должен содержать минимум 4 знака';
@@ -75,4 +70,4 @@ export const PasswordFormInput = ({
       </FormControl>
     </div>
   );
-};
+});

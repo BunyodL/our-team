@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from './Button';
 
 type Props = {
@@ -6,24 +7,20 @@ type Props = {
   page: number;
 };
 
-export function Paginator({ totalPages, setPage, page }: Props) {
-  const pages = [];
-
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push(i);
-  }
-
+export const Paginator = React.memo(({ totalPages, setPage, page }: Props) => {
   return (
     <>
-      {pages.map((n: number) => (
+      {new Array(totalPages).fill(1).map((_, n: number) => (
         <Button
-          className={`pt-2 pb-2 pl-3 pr-3 rounded-full ${page !== n && 'bg-[#fff]'}`}
-          onClick={() => setPage(n)}
-          key={n}
+          className={`pt-2 pb-2 pl-3 pr-3 rounded-full  ${
+            page !== n + 1 ? 'bg-[#fff]' : 'bg-violet'
+          }`}
+          onClick={() => setPage(n + 1)}
+          key={n + 1}
         >
-          <span className={`${page !== n && 'text-black'}`}>{n}</span>
+          <span className={`${page !== n + 1 && 'text-black'}`}>{n + 1}</span>
         </Button>
       ))}
     </>
   );
-}
+});

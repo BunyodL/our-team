@@ -1,21 +1,10 @@
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
-import { InputHTMLAttributes, useState } from 'react';
-import { FieldErrors, UseFormRegister, UseFormWatch } from 'react-hook-form';
+import React, { useState } from 'react';
 import { InputErrorMessage } from './InputErrorMessage';
-import { Inputs } from '../../pages/auth/SignUp';
+import { ConfirmPasswordFormInputType } from '../../@types/inputs';
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
-  id: 'name' | 'email' | 'password' | 'confirmPassword';
-  label: string;
-  placeholder: string;
-  register: UseFormRegister<Inputs>;
-  errors: FieldErrors<Inputs>;
-  watch: UseFormWatch<Inputs>;
-  className?: string;
-};
-
-export const ConfirmPasswordFormInput = ({
+export const ConfirmPasswordFormInput = React.memo(({
   id,
   label,
   placeholder,
@@ -24,7 +13,7 @@ export const ConfirmPasswordFormInput = ({
   watch,
   className,
   ...props
-}: Props) => {
+}: ConfirmPasswordFormInputType) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -76,4 +65,4 @@ export const ConfirmPasswordFormInput = ({
       </FormControl>
     </div>
   );
-};
+});

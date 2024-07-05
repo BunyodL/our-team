@@ -1,6 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SingleUserType, UsersApi } from './usersApi.types';
 
+type UpdatePhotoType = {
+  userId: number;
+  formData: FormData;
+};
+
+type UpdatePhotoResponseType = {};
+
 export const usersApiSlice = createApi({
   reducerPath: 'usersApiSlice',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://reqres.in/api/' }),
@@ -11,7 +18,23 @@ export const usersApiSlice = createApi({
     fetchUserById: builder.query<SingleUserType, string>({
       query: (userId) => `users/${userId}`,
     }),
+    updateUserPhoto: builder.mutation<SingleUserType, UpdatePhotoType>({
+      query: ({ userId, formData }) => {
+   
+        return {
+          url: `users/${userId}`,
+          method: 'PUT',
+          body: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': 'http://localhost:5173/',
+            'Access-Control-Allow-Credentials': 'true',
+          },
+        };
+      },
+    }),
   }),
 });
 
-export const { useFetchUsersQuery, useFetchUserByIdQuery } = usersApiSlice;
+export const { useFetchUsersQuery, useFetchUserByIdQuery, useUpdateUserPhotoMutation } =
+  usersApiSlice;

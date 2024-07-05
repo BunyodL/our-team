@@ -1,18 +1,40 @@
-import { FieldErrors, UseFormHandleSubmit, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { Inputs } from './SignUp';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '../../components/util-components/Button';
-import { ConfirmPasswordFormInput, EmailFormInput, NameFormInput, PasswordFormInput } from '../../components/inputs';
+import {
+	ConfirmPasswordFormInput,
+	EmailFormInput,
+	NameFormInput,
+	PasswordFormInput,
+} from '../../components/inputs';
+import { SignUpQueryBody } from '../../api/authApi';
+import { Inputs } from '../../@types/inputs';
+import React from 'react';
 
 type Props = {
-  register: UseFormRegister<Inputs>;
-  errors: FieldErrors<Inputs>;
-  watch: UseFormWatch<Inputs>;
-  handleSubmit: UseFormHandleSubmit<Inputs>;
-  onSubmit: (formData: Inputs) => void;
   isLoading: boolean;
+  signUpRequest: (authData: SignUpQueryBody) => void;
 };
 
-export function SignUpForm({ register, errors, watch, handleSubmit, onSubmit, isLoading }: Props) {
+export const SignUpForm = React.memo(({ isLoading, signUpRequest }: Props) => {
+  const {
+    handleSubmit,
+    watch,
+    register,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (formData) => {
+    // функция запроса на регистрацию
+    signUpRequest({
+      // подставлены хардкодом левые данные из API, так как не смог
+      // найти Fake API, где можно сделать запрос на регистрацию
+      // во всех таких API запрос на регистрацию доступен только
+      // имеющимся пользователям в каждом конкретном API
+      email: 'eve.holt@reqres.in',
+      password: 'pistol',
+    });
+  };
+
   return (
     <form>
       <div className="flex flex-col gap-4">
@@ -48,11 +70,11 @@ export function SignUpForm({ register, errors, watch, handleSubmit, onSubmit, is
       </div>
 
       <Button
-        className="mb-4 mt-4 h-12 w-full border-0 active:scale-95"
+        className="mb-4 mt-4 h-12 w-full border-0 active:scale-95 bg-violet"
         onClick={handleSubmit(onSubmit)}
       >
         {isLoading ? 'Загрузка...' : 'Зарегистрироваться'}
       </Button>
     </form>
   );
-}
+});

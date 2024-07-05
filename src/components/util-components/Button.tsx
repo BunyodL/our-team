@@ -9,7 +9,7 @@ export const Button = ({ children, className, ...props }: Props) => {
     <button
       {...props}
       className={
-        'cursor-pointer rounded-[8px] text-white text-[16px] bg-violet tracking-wide capitalize ' +
+        'cursor-pointer rounded-[8px] text-white text-[16px] tracking-wide ' +
         className
       }
     >

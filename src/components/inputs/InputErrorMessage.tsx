@@ -1,9 +1,6 @@
-type Props = {
-  errorMessage?: string;
-  className?: string;
-};
+import { InputErrorMessageType } from '../../@types/inputs';
 
-export const InputErrorMessage = ({ errorMessage, className, ...props }: Props) => {
+export const InputErrorMessage = ({ errorMessage, className, ...props }: InputErrorMessageType) => {
   return (
     <span
       {...props}

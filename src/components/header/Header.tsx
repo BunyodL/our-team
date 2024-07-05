@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Header = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+export const Header = React.memo(({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <header {...props}>
       <div
@@ -11,4 +11,4 @@ export const Header = ({ children, ...props }: React.HTMLAttributes<HTMLDivEleme
       </div>
     </header>
   );
-};
+});

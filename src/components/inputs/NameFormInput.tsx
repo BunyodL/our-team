@@ -1,19 +1,9 @@
 import { TextField } from '@mui/material';
-import { InputHTMLAttributes } from 'react';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { InputErrorMessage } from './InputErrorMessage';
-import { Inputs } from '../../pages/auth/SignUp';
+import { InputType } from '../../@types/inputs';
+import React from 'react';
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
-  id: 'name' | 'email' | 'password' | 'confirmPassword';
-  placeholder: string;
-  label: string;
-  register: UseFormRegister<Inputs>;
-  errors: FieldErrors<Inputs>;
-  className?: string;
-};
-
-export const NameFormInput = ({
+export const NameFormInput = React.memo(({
   id,
   placeholder,
   label,
@@ -21,7 +11,7 @@ export const NameFormInput = ({
   errors,
   className,
   ...props
-}: Props) => {
+}: InputType) => {
   return (
     <div
       className="flex flex-col gap-2"
@@ -45,4 +35,4 @@ export const NameFormInput = ({
       </div>
     </div>
   );
-};
+});

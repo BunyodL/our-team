@@ -1,16 +1,18 @@
-import { UserType } from '../../api/usersApi';
+import { UserType } from '../../../api/usersApi';
 import { Paper } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import { UserCheckBox } from './UserCheckBox';
+import { TeammateCheckBox } from './TeammateCheckBox';
+import { AllRoutes } from '../../../@types/routes';
+import React from 'react';
 
 type Props = {
-  user: UserType;
+  teammate: UserType;
 };
 
-export const User = ({ user }: Props) => {
+export const Teammate = React.memo(({ teammate }: Props) => {
   return (
     <NavLink
-      to={`/team/${user.id}`}
+      to={AllRoutes.team + `/${teammate.id}`}
       className="no-underline text-black"
     >
       <Paper
@@ -21,19 +23,19 @@ export const User = ({ user }: Props) => {
           <div className="flex flex-col items-center gap-4">
             <div className="w-[124px] h-[124px]">
               <img
-                src={user.avatar}
-                alt={user.first_name}
+                src={teammate.avatar}
+                alt={teammate.first_name}
                 className="border rounded-full overflow-hidden w-[124px] h-[124px] object-cover"
               />
             </div>
 
-            <span>{`${user.first_name} ${user.last_name}`}</span>
+            <span>{`${teammate.first_name} ${teammate.last_name}`}</span>
           </div>
           <div className="flex flex-col items-end w-full">
-            <UserCheckBox userId={user.id} />
+            <TeammateCheckBox teammateId={teammate.id} />
           </div>
         </div>
       </Paper>
     </NavLink>
   );
-};
+});

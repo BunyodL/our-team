@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Container = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+export const Container = React.memo(({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div {...props}>
       <div
@@ -11,4 +11,4 @@ export const Container = ({ children, ...props }: React.HTMLAttributes<HTMLDivEl
       </div>
     </div>
   );
-};
+});
