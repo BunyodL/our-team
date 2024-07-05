@@ -1,11 +1,15 @@
 import React from 'react';
 
-export const Header = React.memo(({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+  className?: string;
+};
+
+export const Header = React.memo(({ children, className, ...props }: Props) => {
   return (
     <header {...props}>
       <div
         style={{ maxWidth: 1616 }}
-        className="ml-auto mr-auto h-[265px] bg-[#512689]"
+        className={'ml-auto mr-auto bg-violet ' + className}
       >
         {children}
       </div>

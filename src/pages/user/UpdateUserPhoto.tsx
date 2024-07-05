@@ -1,4 +1,4 @@
-import { useUpdateUserPhotoMutation } from "../../api/usersApi/usersApiSlice";
+import { useUpdateUserPhotoMutation } from '../../api/usersApi/usersApiSlice';
 
 type UpdateUserPhotoType = {
   userId?: number;
@@ -7,8 +7,8 @@ type UpdateUserPhotoType = {
 export function UpdateUserPhoto({ userId }: UpdateUserPhotoType) {
   const [updateUserPhoto, { data, isSuccess, isError, error }] = useUpdateUserPhotoMutation();
 
-	// API не предоставляет возможность изменения аватарки
-	// но логика выполнения была бы примерно такой
+  // API не предоставляет возможность изменения аватарки
+  // но логика выполнения была бы примерно такой
   const onPhotoSelected = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement & {
       files: FileList;
@@ -17,7 +17,7 @@ export function UpdateUserPhoto({ userId }: UpdateUserPhotoType) {
     const formData = new FormData();
     formData.append('avatar', target.files[0]);
 
-    updateUserPhoto({ userId: userId!, formData });
+    // updateUserPhoto({ userId: userId!, formData });
   };
 
   if (isSuccess) {
@@ -30,9 +30,10 @@ export function UpdateUserPhoto({ userId }: UpdateUserPhotoType) {
 
   return (
     <div className="active:scale-95 w-fit">
+			 {/* max-sm:absolute bottom-[-50px] */}
       <label
         htmlFor="uploadPhoto"
-        className="w-fit bg-white text-black pt-1 pb-1 pl-3 pr-3 rounded-[8px] cursor-pointer "
+        className="w-fit bg-white text-black pt-1 pb-1 pl-3 pr-3 rounded-[8px] cursor-pointer"
       >
         Загрузить фото
       </label>

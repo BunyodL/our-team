@@ -13,7 +13,7 @@ export const Teammate = React.memo(({ teammate }: Props) => {
   return (
     <NavLink
       to={AllRoutes.team + `/${teammate.id}`}
-      className="no-underline text-black"
+      className="no-underline text-black "
     >
       <Paper
         elevation={2}

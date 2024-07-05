@@ -25,7 +25,7 @@ export const Team = React.memo(() => {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-5 pb-12">
+      <div className="grid grid-cols-4 gap-5 pb-12 max-sm:grid-cols-1">
         {isError && <h2>{errorData.data.error}</h2>}
         {isLoading && (
           <img

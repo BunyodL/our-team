@@ -10,10 +10,11 @@ export function User() {
     <div>
       <UserHeader user={user} />
 
-      <div className="flex gap-32 pl-[188px] pr-[188px] pt-[49px]">
-        <UserDescription />
-        <UserPhoneAndEmail email={user?.email} />
-      </div>
-    </div>
+				<div className="flex md:gap-32 pt-[49px] max-sm:p-4 max-sm:flex-col gap-6">
+					<UserPhoneAndEmail email={user?.email} />
+					<UserDescription />
+				</div>
+			</div>
   );
 }
+// pl-[188px] pr-[188px]

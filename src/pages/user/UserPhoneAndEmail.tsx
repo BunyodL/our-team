@@ -8,7 +8,7 @@ type Props = {
 
 export const UserPhoneAndEmail = React.memo(function UserPhoneAndEmail({ email }: Props) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 md:absolute md:left-[947px] max-sm:pt-3">
       <Button className="bg-[#fff] border-0 flex gap-2 w-fit items-center">
         <img
           src={phone}

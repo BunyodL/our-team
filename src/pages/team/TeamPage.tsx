@@ -14,7 +14,7 @@ export const TeamPage = () => {
   return (
     <>
       <TeamHeader />
-      <Container className="pt-12 pb-12">
+      <Container className="pt-12 pb-12 flex">
         <Team />
       </Container>
     </>

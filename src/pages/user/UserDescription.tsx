@@ -10,7 +10,7 @@ const desc3 = `Помимо разнообразных проектов для �
 
 export const UserDescription = React.memo(() => {
   return (
-    <div className="w-[630px] text-justify text-[16px] text-black">
+    <div className="max-w-[630px] text-justify text-[16px] text-black md:absolute md:left-[188px]">
       <div className="pb-4">{desc1}</div>
       <div className="pb-4">{desc2}</div>
       <div className="pb-4">{desc3}</div>
