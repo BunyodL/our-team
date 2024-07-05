@@ -1,32 +1,38 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { TeamPage } from './pages/team/TeamPage';
 import { User } from './pages/user/User';
 import { useAppSelector } from './redux/store';
 import { useEffect } from 'react';
 import { AllRoutes } from './@types/routes';
-import { useRestoreToken } from './hooks';
+import { useDefineScreenType, useRestoreToken } from './hooks';
 import { SignUpContainer } from './pages/auth/SignUpContainer';
+import { TeamPageContainer } from './pages/team/TeamPageContainer';
 
 export function App() {
   const { isAuth } = useAppSelector((s) => s.auth);
 
-  const restoreToken = useRestoreToken();
+  // устанавливаем значение расширения экрана
+  const defineScreenType = useDefineScreenType();
+  useEffect(() => {
+    defineScreenType();
+  }, []);
 
+  // проверяем себя на авторизованность
+  const restoreToken = useRestoreToken();
   useEffect(() => {
     restoreToken();
-  }, [isAuth, restoreToken]);
+  }, [isAuth]);
 
   return (
     <>
       <Routes>
         <Route
           path={AllRoutes.home}
-          element={<TeamPage />}
+          element={<TeamPageContainer />}
         />
         <Route
           path={AllRoutes.team}
-          element={<TeamPage />}
+          element={<TeamPageContainer />}
         />
         <Route
           path={AllRoutes.singUp}

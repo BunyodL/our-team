@@ -5,6 +5,11 @@ interface SupportType {
   };
 }
 
+export type FetchUsersParams = {
+  page: number;
+  per_page: number;
+};
+
 export interface UsersApi extends SupportType {
   page: number;
   per_page: number;
@@ -22,5 +27,10 @@ export interface UserType {
 }
 
 export interface SingleUserType extends SupportType {
-	data: UserType
+  data: UserType;
 }
+
+export type UpdatePhotoType = {
+  userId: number;
+  formData: FormData;
+};

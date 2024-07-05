@@ -1,8 +1,7 @@
 import React from 'react';
-import { useAppDispatch } from '../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { Button } from '../util-components/Button';
 import { Link } from 'react-router-dom';
-import { DefineScreenType } from './DefineScreenType';
 
 type Props = {
   name: string;
@@ -18,6 +17,7 @@ export const HeaderButton = React.memo(function HeaderButton({
   svgIcon,
 }: Props) {
   const dispatch = useAppDispatch();
+  const { isMobile } = useAppSelector((s) => s.screen);
 
   return (
     <Link
@@ -28,10 +28,14 @@ export const HeaderButton = React.memo(function HeaderButton({
         onClick={() => dispatch(callback!())}
         className="flex max-w-[81px] border border-white pt-2 pb-2 pl-4 pr-4 capitalize bg-violet max-sm:p-3 max-sm:border-0"
       >
-        <DefineScreenType
-          name={name}
-          svgIcon={svgIcon}
-        />
+        {isMobile ? (
+          <img
+            src={svgIcon}
+            alt=""
+          />
+        ) : (
+          name
+        )}
       </Button>
     </Link>
   );

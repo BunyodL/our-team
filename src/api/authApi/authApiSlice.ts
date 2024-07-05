@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SignUpQueryBody, SignUpResponseType } from './authApi.types';
+import { LocalStorage } from '../../@types/localStorage';
 
 export const authApiSlice = createApi({
   reducerPath: 'authApiSlice',
@@ -12,7 +13,7 @@ export const authApiSlice = createApi({
         body: authData,
       }),
       transformResponse: (response: SignUpResponseType) => {
-        localStorage.setItem('token', response.token);
+        localStorage.setItem(LocalStorage.token, response.token);
         return response;
       },
     }),

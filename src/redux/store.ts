@@ -2,13 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { authApiSlice, usersApiSlice } from '../api';
-import { authSlice, teamSlice, userSlice } from './reducers';
+import { authSlice, teamSlice, userSlice, screenSlice } from './reducers';
 
 export const store = configureStore({
   reducer: {
     team: teamSlice,
     user: userSlice,
     auth: authSlice,
+    screen: screenSlice,
     [usersApiSlice.reducerPath]: usersApiSlice.reducer,
     [authApiSlice.reducerPath]: authApiSlice.reducer,
   },

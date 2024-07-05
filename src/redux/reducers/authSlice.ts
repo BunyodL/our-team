@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { LocalStorage } from '../../@types/localStorage';
 
 export interface AuthState {
   isAuth: boolean;
@@ -19,7 +20,7 @@ const authSlice = createSlice({
     },
     signOut(state) {
       state.isAuth = false;
-      localStorage.removeItem('token');
+      localStorage.removeItem(LocalStorage.token);
     },
     setError(state, action: PayloadAction<string>) {
       state.errorMessage = action.payload;
