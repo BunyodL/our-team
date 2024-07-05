@@ -20,7 +20,10 @@ export const HeaderButton = React.memo(function HeaderButton({
   const dispatch = useAppDispatch();
 
   return (
-    <Link to={navigateTo}>
+    <Link
+      to={navigateTo}
+      className="no-underline"
+    >
       <Button
         onClick={() => dispatch(callback!())}
         className="flex max-w-[81px] border border-white pt-2 pb-2 pl-4 pr-4 capitalize bg-violet max-sm:p-3 max-sm:border-0"
