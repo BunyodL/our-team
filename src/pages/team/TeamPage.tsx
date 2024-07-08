@@ -12,17 +12,14 @@ export const TeamPage = React.memo(() => {
 
   // запрос пользователей
   const { fetchUsersParams } = useAppSelector((s) => s.team);
-  // const { isMobile } = useAppSelector((s) => s.screen);
 
   const { data, isLoading, isSuccess, isError, error } = useFetchUsersQuery(fetchUsersParams);
 
-  // useEffect(() => {
-    if (isSuccess) {
-      dispatch(setUsers(data.data));
-      dispatch(setTotalUsersCount(data.total));
-      dispatch(setTotalPages(data.total_pages));
-    }
-  // }, [isSuccess, dispatch, isMobile]);
+  if (isSuccess) {
+    dispatch(setUsers(data.data));
+    dispatch(setTotalUsersCount(data.total));
+    dispatch(setTotalPages(data.total_pages));
+  }
 
   const errorData = error as SignUpErrorResponseType;
 
