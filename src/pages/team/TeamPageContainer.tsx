@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useSetFetchUsersParams, useSetFollowedUsers } from '../../hooks';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { setTotalPages, setTotalUsersCount, setUsers } from '../../redux/reducers/teamSlice';
+import { useAppSelector } from '../../redux/store';
 import { TeamPage } from './TeamPage';
-import { useFetchUsersQuery } from '../../api/usersApi/usersApiSlice';
-import { SignUpErrorResponseType } from '../../api/authApi';
 
 export const TeamPageContainer = () => {
   // определяем пользователей, на которых мы подписаны
