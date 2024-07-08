@@ -19,15 +19,5 @@ export const TeamPageContainer = () => {
     setFetchUsersParams();
   }, [isMobile]);
 
-  return (
-    <>
-      {/* <SetFollowedUsers /> */}
-      {/* <SetFetchUsersParams /> */}
-      <TeamPage
-        isLoading={false}
-        isError={false}
-        // error={errorData}
-      />
-    </>
-  );
+  return <TeamPage />;
 };
