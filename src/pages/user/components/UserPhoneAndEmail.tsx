@@ -1,5 +1,5 @@
-import { Button } from '../../components/util-components/Button';
-import { mail, phone } from '../../assets';
+import { Button } from '../../../components/util-components/Button';
+import { mail, phone } from '../../../assets';
 import React from 'react';
 
 type Props = {
@@ -36,4 +36,4 @@ export const UserPhoneAndEmail = React.memo(function UserPhoneAndEmail({ email }
       </Button>
     </div>
   );
-})
+});

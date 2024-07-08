@@ -1,16 +1,17 @@
 import React from 'react';
-import { Header, HeaderButton } from '../../components/header';
-import { AllRoutes } from '../../@types/routes';
-import { signOut } from '../../redux/reducers/authSlice';
-import { UserType } from '../../api/usersApi';
+import { Header, HeaderButton } from '../../../components/header';
+import { AllRoutes } from '../../../@types/routes';
+import { signOut } from '../../../redux/reducers/authSlice';
+import { UserType } from '../../../api/usersApi';
 import { UserProfile } from './UserProfile';
-import { chevronLeft, exit } from '../../assets';
+import { chevronLeft, exit } from '../../../assets';
 
 type Props = {
   user: UserType | null;
+  isLoading: boolean;
 };
 
-export const UserHeader = React.memo(function UserHeader({ user }: Props) {
+export const UserHeader = React.memo(function UserHeader({ isLoading, user }: Props) {
   return (
     <Header className="min-h-[265px] max-sm:min-h-[420px]">
       <div className="flex justify-between pt-8 pl-20 pr-20 max-sm:pt-3 max-sm:pl-4 max-sm:pr-4">
@@ -27,7 +28,10 @@ export const UserHeader = React.memo(function UserHeader({ user }: Props) {
         />
       </div>
 
-      <UserProfile user={user} />
+      <UserProfile
+        isLoading={isLoading}
+        user={user}
+      />
     </Header>
   );
 });

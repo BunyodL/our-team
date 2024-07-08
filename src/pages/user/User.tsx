@@ -1,20 +1,25 @@
+import React from 'react';
 import { useAppSelector } from '../../redux/store';
-import { UserDescription } from './UserDescription';
-import { UserPhoneAndEmail } from './UserPhoneAndEmail';
-import { UserHeader } from './UserHeader';
+import { UserDescription, UserHeader, UserPhoneAndEmail } from './components';
 
-export function User() {
+type Props = {
+  isLoading: boolean;
+};
+
+export const User = React.memo(function User({ isLoading }: Props) {
   const { user } = useAppSelector((s) => s.user);
 
   return (
     <div>
-      <UserHeader user={user} />
+      <UserHeader
+        isLoading={isLoading}
+        user={user}
+      />
 
-				<div className="flex md:gap-32 pt-[49px] max-sm:p-4 max-sm:flex-col gap-6">
-					<UserPhoneAndEmail email={user?.email} />
-					<UserDescription />
-				</div>
-			</div>
+      <div className="flex md:gap-32 pt-[49px] max-sm:p-4 max-sm:flex-col gap-6">
+        <UserPhoneAndEmail email={user?.email} />
+        <UserDescription />
+      </div>
+    </div>
   );
-}
-// pl-[188px] pr-[188px]
+});

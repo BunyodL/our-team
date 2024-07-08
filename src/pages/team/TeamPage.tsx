@@ -1,23 +1,34 @@
 import { Container } from '../../components/util-components/Container';
 import { Team } from './Team';
 import { TeamHeader } from './TeamHeader';
+import { SignUpErrorResponseType } from '../../api/authApi';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { useFetchUsersQuery } from '../../api/usersApi/usersApiSlice';
 import { setTotalPages, setTotalUsersCount, setUsers } from '../../redux/reducers/teamSlice';
-import { SignUpErrorResponseType } from '../../api/authApi';
 
-export const TeamPage = () => {
+type Props = {
+  isLoading: boolean;
+  isError: boolean;
+  // error: SignUpErrorResponseType;
+};
+
+export const TeamPage = React.memo(({}: Props) => {
   const dispatch = useAppDispatch();
-  const { fetchUsersParams } = useAppSelector((s) => s.team);
 
   // запрос пользователей
+  const { fetchUsersParams } = useAppSelector((s) => s.team);
+  const { isMobile } = useAppSelector((s) => s.screen);
+
   const { data, isLoading, isSuccess, isError, error } = useFetchUsersQuery(fetchUsersParams);
 
-  if (isSuccess) {
-    dispatch(setUsers(data.data));
-    dispatch(setTotalUsersCount(data.total));
-    dispatch(setTotalPages(data.total_pages));
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setUsers(data.data));
+      dispatch(setTotalUsersCount(data.total));
+      dispatch(setTotalPages(data.total_pages));
+    }
+  }, [isSuccess, dispatch, isMobile]);
 
   const errorData = error as SignUpErrorResponseType;
 
@@ -33,4 +44,4 @@ export const TeamPage = () => {
       </Container>
     </>
   );
-};
+});

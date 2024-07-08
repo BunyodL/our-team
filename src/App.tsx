@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { User } from './pages/user/User';
 import { useAppSelector } from './redux/store';
 import { useEffect } from 'react';
 import { AllRoutes } from './@types/routes';
 import { useDefineScreenType, useRestoreToken } from './hooks';
 import { SignUpContainer } from './pages/auth/SignUpContainer';
+import { UserContainer } from './pages/user/UserContainer';
 import { TeamPageContainer } from './pages/team/TeamPageContainer';
 
 export function App() {
@@ -40,7 +40,7 @@ export function App() {
         />
         <Route
           path={AllRoutes.team + '/:teammateId'}
-          element={<User />}
+          element={<UserContainer />}
         />
       </Routes>
     </>

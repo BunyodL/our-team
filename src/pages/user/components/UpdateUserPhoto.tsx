@@ -1,4 +1,4 @@
-import { useUpdateUserPhotoMutation } from '../../api/usersApi/usersApiSlice';
+import { useUpdateUserPhotoMutation } from '../../../api/usersApi/usersApiSlice';
 
 type UpdateUserPhotoType = {
   userId?: number;
@@ -30,7 +30,6 @@ export function UpdateUserPhoto({ userId }: UpdateUserPhotoType) {
 
   return (
     <div className="active:scale-95 w-fit">
-			 {/* max-sm:absolute bottom-[-50px] */}
       <label
         htmlFor="uploadPhoto"
         className="w-fit bg-white text-black pt-1 pb-1 pl-3 pr-3 rounded-[8px] cursor-pointer"

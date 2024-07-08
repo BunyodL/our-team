@@ -1,30 +1,14 @@
 import React from 'react';
 import { UpdateUserPhoto } from './UpdateUserPhoto';
-import { UserType } from '../../api/usersApi';
-import { loader } from '../../assets';
-import { setUser } from '../../redux/reducers/userSlice';
-import { useFetchUserByIdQuery } from '../../api/usersApi/usersApiSlice';
-import { useAppDispatch } from '../../redux/store';
-import { useParams } from 'react-router-dom';
+import { loader } from '../../../assets';
+import { UserType } from '../../../api/usersApi';
 
 type Props = {
   user: UserType | null;
+  isLoading: boolean;
 };
 
-export const UserProfile = React.memo(({ user }: Props) => {
-  const dispatch = useAppDispatch();
-  const { teammateId } = useParams();
-
-  if (+teammateId! >= 13) {
-    return <h2>Запрашиваемый пользователь не найден</h2>;
-  }
-
-  const { data, isLoading, isSuccess } = useFetchUserByIdQuery(teammateId!);
-
-  if (isSuccess) {
-    dispatch(setUser(data.data));
-  }
-
+export const UserProfile = React.memo(({ isLoading, user }: Props) => {
   return (
     <div className="flex md:gap-3 items-center justify-center md:absolute top-[39px] left-[188px] max-sm:flex-col gap-5">
       <div className="flex gap-4 max-sm:flex-col items-center justify-center relative w-full h-full">

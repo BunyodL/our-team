@@ -5,10 +5,12 @@ import { LocalStorage } from '../../@types/localStorage';
 
 export interface UserState {
   user: UserType | null;
+	// isLoading: boolean
   followedUsers: number[];
 }
 
 const initialState: UserState = {
+	// isLoading:false,
   user: null,
   followedUsers: [], // ids of followed users
 };

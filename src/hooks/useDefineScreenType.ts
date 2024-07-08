@@ -12,7 +12,7 @@ export const useDefineScreenType = () => {
     return () => {
       window.removeEventListener('load', defineScreenType);
       window.removeEventListener('resize', defineScreenType);
-      window.addEventListener('click', defineScreenType);
+      window.removeEventListener('click', defineScreenType);
     };
   };
 };
